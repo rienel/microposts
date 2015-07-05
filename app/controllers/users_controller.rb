@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show # 追加
-   @user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @microposts = @user.microposts
   end
   
   def new
