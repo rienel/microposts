@@ -1,10 +1,15 @@
 class User < ActiveRecord::Base
   has_many :microposts
 
+  # フォローしているユーザとの関連付け
+  # dependent：ユーザが削除されたらそれに紐付くrelationテーブルのカラムも削除する
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
   has_many :following_users, through: :following_relationships, source: :followed
+
+  # フォローされているユーザとの関連付け
+  # dependent：ユーザが削除されたらそれに紐付くrelationテーブルのカラムも削除する  
   has_many :followed_relationships, class_name:  "Relationship",
                                     foreign_key: "followed_id",
                                     dependent:   :destroy

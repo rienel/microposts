@@ -5,6 +5,18 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <ul>
+        <li>
+          <%= link_to followings_user_path(@user) do %>
+            フォロー<br /><%= @follower_num %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to followers_user_path(@user) do %>
+            フォロワー<br /><%= @followed_num %>
+          <% end %>
+        </li>
+      </ul>
     </section>
   </aside>
   <div class="col-md-8">

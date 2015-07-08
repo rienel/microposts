@@ -1,0 +1,50 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <ul>
+        <li>
+          <%= link_to followings_user_path(@user) do %>
+            フォロー<br /><%= @follower_num %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to followers_user_path(@user) do %>
+            フォロワー<br /><%= @followed_num %>
+          <% end %>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="col-md-8">
+    <div class="list-title">フォロー</div>
+    <% if @follower_num == 0 %>
+      <p>フォローしているユーザはいません。</p>
+    <% else %>
+      <% cnt = 0 %>
+      <% @follow_users.each do |follow_user| %>
+        <% if 0 == cnt % 4 || cnt == 0 %>
+          <div class="row">
+        <% end %>
+          <div class="col-md-3">
+            <div class="follow-list">
+              <p class="list-name">
+                <%= link_to user_path(follow_user.id) do %>
+                  <%= follow_user.name %>
+                <% end %>
+              </p>
+              <p><%= follow_user.email %></p>
+            </div>
+          </div>
+        <% if 0 == cnt % 3 && cnt != 0 || @follower_num == cnt+1 %>
+          </div>
+        <% end %>
+        <% cnt = cnt + 1 %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
