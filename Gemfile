@@ -48,3 +48,9 @@ group :development, :test do
 end
 
 gem 'kaminari'
+
+# javascript runtime。lessをコンパイルするために必要
+gem 'therubyracer'
+# Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
+gem 'less-rails'
+gem 'twitter-bootstrap-rails' # Bootstrapの本体
