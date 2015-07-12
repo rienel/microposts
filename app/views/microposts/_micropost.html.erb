@@ -1,9 +1,20 @@
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+
+  <% if micropost.favorited_by?(current_user) %>
+    <%= link_to favorite_path(micropost), method: :delete do %>
+      <span class="glyphicon glyphicon-star icon-star-off"></span>
+    <% end %>
+  <% else %>
+    <%= link_to favorites_path(micropost), method: :post do %>
+      <span class="glyphicon glyphicon-star icon-star-on"></span>
+    <% end %>
+  <% end %>
+
   <span class="content"><%= micropost.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %>前
+    <%= time_ago_in_words(micropost.created_at) %>前
     <% if current_user == micropost.user %>
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>

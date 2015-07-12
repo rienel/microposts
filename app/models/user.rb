@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
                                     dependent:   :destroy
   has_many :followed_users, through: :followed_relationships, source: :follower
 
+  
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
