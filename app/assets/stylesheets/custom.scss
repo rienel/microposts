@@ -131,6 +131,10 @@ aside {
       margin-bottom: 3px;
       margin-top: 0px;
     }
+    li {
+      margin: 0 20px 0 0;
+      display: inline-block;
+    }
   }
 }
 
@@ -196,4 +200,16 @@ span.picture {
 
 #follow_form {
   margin-top: 20px;
+}
+
+.list-title {
+  height: 50px;        /* 縦中央揃え */ 
+  line-height: 50px;   /* 縦中央揃え */ 
+  border-radius: 5px;        /* 角丸 */  
+  -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */  
+  -moz-border-radius: 5px;   /* Firefox用 */
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  margin: 20px 0 15px;
+  padding-left:10px;
 }

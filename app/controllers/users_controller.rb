@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :favorite_get, only: [:show, :favorites]
 
   def show # 追加
     @user = User.find(params[:id])
@@ -19,9 +20,21 @@ class UsersController < ApplicationController
     end
   end
 
+  # お気に入り登録している取得
+  def favorites
+    @user = User.find(params[:id])
+    @microposts = Favorite.where(user_id: params[:id])
+#    @microposts = @favorite.micropost
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def favorite_get
+    # フォロー、フォロワーの数を検索
+    @favorite_num =  Favorite.where(user_id: params[:id]).count
   end
 end

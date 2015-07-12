@@ -11,4 +11,11 @@ Rails.application.routes.draw do
   resources :microposts
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:index, :create, :destroy]
+
+  # お気に入りページ用
+  resources :users do
+    member do
+      get :favorites
+    end
+  end
 end
