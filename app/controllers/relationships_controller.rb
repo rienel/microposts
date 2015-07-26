@@ -2,6 +2,7 @@ class RelationshipsController < ApplicationController
   before_action :logged_in_user
 
   def create
+  logger.debug("ログに吐き出す文字列")
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
   end

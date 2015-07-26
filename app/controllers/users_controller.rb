@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
+  before_action :follow_get, only: [:show, :followings, :followers]
 
-  def show # 追加
+  def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
   end
@@ -33,6 +34,18 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  # フォローしているユーザーを取得
+  def followings
+    @user = User.find(params[:id])
+    @follow_users = @user.following_users
+  end
+
+  # フォローされているユーザーを取得
+  def followers
+    @user = User.find(params[:id])
+    @follow_users = @user.followed_users
+  end
 
   private
 
@@ -42,5 +55,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def follow_get
+    # フォロー、フォロワーの数を検索
+    @follower_num =  Relationship.where(follower_id: params[:id]).count
+    @followed_num =  Relationship.where(followed_id: params[:id]).count
   end
 end
