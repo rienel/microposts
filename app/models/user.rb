@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   has_many :microposts
 
   has_many :following_relationships, class_name:  "Relationship",
@@ -9,6 +10,8 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
   has_many :followed_users, through: :followed_relationships, source: :follower
+
+  belongs_to :prefectural
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
