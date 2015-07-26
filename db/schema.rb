@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150711135737) do
   create_table "prefecturals", force: :cascade do |t|
     t.string "name"
   end
-
+<<<<<<< HEAD
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"

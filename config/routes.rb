@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'signup',  to: 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
+  get    'search'   => 'microposts#index'
   delete 'logout'  => 'sessions#destroy'
 
   resources :users
